@@ -1,6 +1,5 @@
 #include<iostream>
 #include"errors.h"
-#include"enigma.hpp"
 #include"plugboard.hpp"
 #include"reflector.hpp"
 #include"rotors.hpp"

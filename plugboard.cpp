@@ -1,8 +1,8 @@
 #include<iostream>
 #include<fstream>
 #include"errors.h"
-#include"enigma.hpp"
 #include"plugboard.hpp"
+#include"helper.hpp"
 
 using namespace std;
 

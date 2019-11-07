@@ -1,3 +1,6 @@
+#include<fstream>
+
+using namespace std;
 
 /* opens a stream and checks for an error */
 

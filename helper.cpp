@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include"errors.h"
-#include"enigma.hpp"
+#include"helper.hpp"
 
 const int AMIN = 0, ZMAX = 25;
 

@@ -1,4 +1,4 @@
-#include<iostream>
+/*#include<iostream>
 #include<fstream>
 #include"errors.h"
 #include"enigma.hpp"
@@ -20,7 +20,7 @@ int input_check(int number_of_files, char* file_name[]){
   return 0;
   
 }
-/*int plugboard_check(char* file_name){
+int plugboard_check(char* file_name){
 
   int number, count=0, numbers[27];
   char peek; 
@@ -165,7 +165,7 @@ int config_check(char* file_name, int number_of_files){
   in_stream.close();
   return 0;
 }
-*/
+
 bool is_numeric(int test_digit){
 
   bool outcome;
@@ -191,3 +191,4 @@ bool index_check(int number){
 
   return(number > ZMAX || number < AMIN);
 }
+*/

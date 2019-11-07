@@ -1,7 +1,7 @@
 #include<iostream>
 #include<fstream>
 #include"errors.h"
-#include"enigma.hpp"
+#include"helper.hpp"
 #include"reflector.hpp"
 
 using namespace std;

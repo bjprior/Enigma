@@ -13,7 +13,7 @@ reflector.o: reflector.cpp helper.hpp reflector.hpp
 rotors.o: rotors.cpp helper.hpp rotors.hpp
 	g++ -g -c -Wall rotors.cpp
 
-helper.o: enigma.cpp enigma.hpp
+helper.o:
 	g++ -g -c -Wall helper.cpp
 
 clean:
