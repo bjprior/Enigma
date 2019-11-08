@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
   
-  int number_of_rotors = 0, rotor_num =0;
+  int number_of_rotors = 0, rotor_num =0, error = 0;
   int starting_position[argc-4] = {};
   int input_int =0;
   char input_char;
@@ -20,8 +20,11 @@ int main(int argc, char* argv[]){
   number_of_rotors = argc -4;
   
   plug.file_name = argv[1];
-  plug.plugboard_check();
-    
+  error = plug.plugboard_check();
+    if(error!=0){
+      cerr << error;
+      return error;
+    }
   reflector.file_name = argv[2];
   reflector.reflector_check();
 
@@ -31,10 +34,7 @@ int main(int argc, char* argv[]){
     rotor[rotor_num].file_name=argv[i];
     rotor[rotor_num].rotor_check();
     rotor_num++;
-  }
-  
-
-  
+  }  
   
   /*Assign the starting position to rotor*/
   config_check(argv[argc-1],argc,starting_position);
@@ -51,8 +51,12 @@ int main(int argc, char* argv[]){
   cin >> ws >> input_char;
   while(!cin.eof() && input_char <= 'Z' && input_char >='A' ){
     input_int = static_cast<int>(input_char)-65;
+
+    cout << "Plug in:" << input_int;
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
+    cout << " Plug out:" << input_int; 
+    
     
     // Rotate rotors //
 
@@ -80,10 +84,12 @@ int main(int argc, char* argv[]){
     for(int j = 0; j < number_of_rotors; j++){
       input_int = rotor[j].rotor_bwd_map(input_int);
     }
-    
+
+
+    cout << "Plug in:" << input_int;
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
-
+    cout << "Plug out:" << input_int << endl;
 
     /* for(int i = 0; i < number_of_rotors; i++){
       cout << endl << "Rotor " << i << " Current Position:" << rotor[i].current_position%26 << endl;
