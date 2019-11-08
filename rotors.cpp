@@ -60,7 +60,7 @@ void Rotor::rotate(){
 
 }
 
-void Rotor::rotor_set(){
+/*void Rotor::rotor_set(){
 
   int temp[1][2];
 
@@ -75,7 +75,7 @@ void Rotor::rotor_set(){
   mapping[25][0] = temp[0][0];
   mapping[25][1] = temp[0][1];
 }
-    
+*/  
 
 int Rotor::rotor_fwd_map(int target){
 

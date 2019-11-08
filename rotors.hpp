@@ -9,7 +9,7 @@ public:
   char* file_name;
   int rotor_check();
   void rotate();
-  void rotor_set();
+  //void rotor_set();
   int rotor_fwd_map(int target);
   int rotor_bwd_map(int target);
 };

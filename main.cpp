@@ -18,31 +18,30 @@ int main(int argc, char* argv[]){
   Rotor rotor[argc - 4];
 
   number_of_rotors = argc -4;
-  
+    
   plug.file_name = argv[1];
-  error = plug.plugboard_check();
-    if(error!=0){
-      cerr << error;
-      return error;
-    }
+  plug.plugboard_check();
+
+    
   reflector.file_name = argv[2];
   reflector.reflector_check();
 
+ 
   /* assign values to rotor */
-  
-  for(int i = argc - 4; i < argc -1; i++){
+  for(int i = argc - 4; i < argc -4 + number_of_rotors; i++){
     rotor[rotor_num].file_name=argv[i];
     rotor[rotor_num].rotor_check();
     rotor_num++;
   }  
-  
+
   /*Assign the starting position to rotor*/
   config_check(argv[argc-1],argc,starting_position);
+  
   for (int i =0; i < number_of_rotors; i++){
     rotor[i].starting_position = starting_position[i];
     rotor[i].current_position = rotor[i].starting_position;
   }
-
+  
   /*for(int i = 0; i < number_of_rotors; i++){
     cout << "Rotor " << i << " Starting Position" << rotor[i].starting_position << endl;
     }*/
@@ -51,45 +50,40 @@ int main(int argc, char* argv[]){
   while(cin >> ws >>input_char && input_char <= 'Z' && input_char >='A' ){
     input_int = static_cast<int>(input_char)-65;
 
-    cout << "Plug in:" << input_int;
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
-    cout << " Plug out:" << input_int; 
     
-    
+
     // Rotate rotors //
 
     //rotate rotor N //
-      
-    rotor[number_of_rotors -1].rotate();
+
+    if(number_of_rotors > 0)
+      rotor[number_of_rotors -1].rotate();
 
     //rotate other rotors //
-      for(int k = 0; k < number_of_rotors -1; k++){
-	if(notch_check(rotor[k+1],rotor[k+1].current_position))
-	  rotor[k].rotate();
-      }
-
-
-      // Pass through rotors right to left//
-      for(int j =number_of_rotors-1; j >-1; j--){
-	input_int = rotor[j].rotor_fwd_map(input_int);
-      }
-    
-    // Pass through reflector //
-      input_int = reflector.reflector_map(input_int);
-
-
-      // Pass back through rotors //
-    for(int j = 0; j < number_of_rotors; j++){
-      input_int = rotor[j].rotor_bwd_map(input_int);
+    for(int k = 0; k < number_of_rotors -1; k++){
+      if(notch_check(rotor[k+1],rotor[k+1].current_position))
+	rotor[k].rotate();
     }
 
+    // Pass through rotors right to left//
+    for(int j =number_of_rotors-1; j >-1; j--){
+      input_int = rotor[j].rotor_fwd_map(input_int);
+    }
 
-    cout << "Plug in:" << input_int;
+    // Pass through reflector //
+    input_int = reflector.reflector_map(input_int);
+
+    
+    // Pass back through rotors //
+    for(int j = 0; j < number_of_rotors; j++){
+      input_int = rotor[j].rotor_bwd_map(input_int);
+      }
+    
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
-    cout << "Plug out:" << input_int << endl;
-
+    
     /* for(int i = 0; i < number_of_rotors; i++){
       cout << endl << "Rotor " << i << " Current Position:" << rotor[i].current_position%26 << endl;
       }*/
