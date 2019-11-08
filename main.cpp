@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
   number_of_rotors = argc -4;
     
   plug.file_name = argv[1];
-  cerr << plug.plugboard_check();
+  plug.plugboard_check();
 
     
   reflector.file_name = argv[2];
