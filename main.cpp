@@ -48,8 +48,7 @@ int main(int argc, char* argv[]){
     }*/
 
   // Passing values through the engima machine // 
-  cin >> ws >> input_char;
-  while(!cin.eof() && input_char <= 'Z' && input_char >='A' ){
+  while(cin >> ws >>input_char && input_char <= 'Z' && input_char >='A' ){
     input_int = static_cast<int>(input_char)-65;
 
     cout << "Plug in:" << input_int;
@@ -95,11 +94,8 @@ int main(int argc, char* argv[]){
       cout << endl << "Rotor " << i << " Current Position:" << rotor[i].current_position%26 << endl;
       }*/
 
-    
-    
     input_char = static_cast<char>(input_int+65);
-    cout << input_char;
-	    cin >> ws >> input_char;	      
+    cout << input_char;	      
   } 
   
   return 0;
