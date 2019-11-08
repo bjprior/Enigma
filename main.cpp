@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
   
-  int number_of_rotors = 0, rotor_num =0;
+  int number_of_rotors = 0, rotor_num =0, error =0;
   int starting_position[argc-4] = {};
   int input_int =0;
   char input_char;
@@ -20,7 +20,10 @@ int main(int argc, char* argv[]){
   number_of_rotors = argc -4;
   
   plug.file_name = argv[1];
-  plug.plugboard_check();
+  error = plug.plugboard_check();
+  if(error!=0)
+    return error;
+    
   
   reflector.file_name = argv[2];
   reflector.reflector_check();
@@ -41,7 +44,7 @@ int main(int argc, char* argv[]){
   }
 
   cin >> ws >> input_char;
-  while(!cin.eof()){
+  while(!cin.eof() && input_char < 91 && input_char ){
     input_int = static_cast<int>(input_char)-65;
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
@@ -70,6 +73,7 @@ int main(int argc, char* argv[]){
     
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
+    
     input_char = static_cast<char>(input_int+65);
     cout << input_char;
 	    cin >> ws >> input_char;	      
