@@ -20,7 +20,7 @@ int main(int argc, char* argv[]){
   number_of_rotors = argc -4;
     
   plug.file_name = argv[1];
-  plug.plugboard_check();
+  cerr << plug.plugboard_check();
 
     
   reflector.file_name = argv[2];
@@ -41,7 +41,7 @@ int main(int argc, char* argv[]){
     rotor[i].starting_position = starting_position[i];
     rotor[i].current_position = rotor[i].starting_position;
   }
-  
+    
   /*for(int i = 0; i < number_of_rotors; i++){
     cout << "Rotor " << i << " Starting Position" << rotor[i].starting_position << endl;
     }*/
@@ -84,10 +84,6 @@ int main(int argc, char* argv[]){
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
     
-    /* for(int i = 0; i < number_of_rotors; i++){
-      cout << endl << "Rotor " << i << " Current Position:" << rotor[i].current_position%26 << endl;
-      }*/
-
     input_char = static_cast<char>(input_int+65);
     cout << input_char;	      
   } 

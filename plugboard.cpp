@@ -36,7 +36,7 @@ int Plugboard::plugboard_check(){
     in_stream >> ws;
     peek = in_stream.peek();
   }
-  if(count > 25 || count %2 != 0)
+  if(count > 26 || count %2 != 0)
     return 6;
   number_of_pairs = count/2;
   in_stream.close();
