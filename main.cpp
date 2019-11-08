@@ -32,13 +32,20 @@ int main(int argc, char* argv[]){
     rotor[rotor_num].rotor_check();
     rotor_num++;
   }
+  
 
+  
+  
   /*Assign the starting position to rotor*/
   config_check(argv[argc-1],argc,starting_position);
   for (int i =0; i < number_of_rotors; i++){
     rotor[i].starting_position = starting_position[i];
     rotor[i].current_position = rotor[i].starting_position;
-  } 
+  }
+
+  /*for(int i = 0; i < number_of_rotors; i++){
+    cout << "Rotor " << i << " Starting Position" << rotor[i].starting_position << endl;
+    }*/
 
   // Passing values through the engima machine // 
   cin >> ws >> input_char;
@@ -47,21 +54,26 @@ int main(int argc, char* argv[]){
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
     
-    // Pass through rotors right to left//
-    for(int j =number_of_rotors-1; j >-1; j--){
-      //rotate rotor 1 //
-      if(j == number_of_rotors-1)
-	rotor[j].rotate();
-      //rotate other rotors //
-      for(int k = number_of_rotors -2; k > -1; k--){
+    // Rotate rotors //
+
+    //rotate rotor N //
+      
+    rotor[number_of_rotors -1].rotate();
+
+    //rotate other rotors //
+      for(int k = 0; k < number_of_rotors -1; k++){
 	if(notch_check(rotor[k+1],rotor[k+1].current_position))
 	  rotor[k].rotate();
       }
-      input_int = rotor[j].rotor_fwd_map(input_int);
-    }
+
+
+      // Pass through rotors right to left//
+      for(int j =number_of_rotors-1; j >-1; j--){
+	input_int = rotor[j].rotor_fwd_map(input_int);
+      }
     
     // Pass through reflector //
-    input_int = reflector.reflector_map(input_int);
+      input_int = reflector.reflector_map(input_int);
 
 
       // Pass back through rotors //
@@ -71,6 +83,13 @@ int main(int argc, char* argv[]){
     
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
+
+
+    /* for(int i = 0; i < number_of_rotors; i++){
+      cout << endl << "Rotor " << i << " Current Position:" << rotor[i].current_position%26 << endl;
+      }*/
+
+    
     
     input_char = static_cast<char>(input_int+65);
     cout << input_char;
