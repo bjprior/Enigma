@@ -146,7 +146,7 @@ int config_check(char* file_name, int number_of_files, int positions[]){
 bool notch_check(Rotor rotor, int position){
 
   for(int i = 0; i < rotor.number_of_notches; i++){
-    if(rotor.notch[i]==position)
+    if(rotor.notch[i]==(position))
       return true;
   }
   return false;

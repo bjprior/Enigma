@@ -9,7 +9,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
   
-  int number_of_rotors = 0, rotor_num =0, error =0;
+  int number_of_rotors = 0, rotor_num =0;
   int starting_position[argc-4] = {};
   int input_int =0;
   char input_char;
@@ -20,11 +20,8 @@ int main(int argc, char* argv[]){
   number_of_rotors = argc -4;
   
   plug.file_name = argv[1];
-  error = plug.plugboard_check();
-  if(error!=0)
-    return error;
+  plug.plugboard_check();
     
-  
   reflector.file_name = argv[2];
   reflector.reflector_check();
 
@@ -41,10 +38,11 @@ int main(int argc, char* argv[]){
   for (int i =0; i < number_of_rotors; i++){
     rotor[i].starting_position = starting_position[i];
     rotor[i].current_position = rotor[i].starting_position;
-  }
+  } 
 
+  // Passing values through the engima machine // 
   cin >> ws >> input_char;
-  while(!cin.eof() && input_char < 91 && input_char ){
+  while(!cin.eof() && input_char <= 'Z' && input_char >='A' ){
     input_int = static_cast<int>(input_char)-65;
     // Pass through plugboard //
     input_int = plug.plug_map(input_int);
