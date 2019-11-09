@@ -1,6 +1,6 @@
 #include<iostream>
 #include<fstream>
-#include"errors.h"
+#include"errors.hpp"
 #include"plugboard.hpp"
 #include"helper.hpp"
 

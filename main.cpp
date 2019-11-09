@@ -28,8 +28,11 @@ int main(int argc, char* argv[]){
   }
   
   reflector.file_name = argv[2];
-  reflector.reflector_check();
-
+  error = reflector.reflector_check();
+  if(error != 0){
+    check_error(error,argv[2]);
+    return error;
+  }
  
   /* assign values to rotor */
   for(int i = argc - 4; i < argc -4 + number_of_rotors; i++){
