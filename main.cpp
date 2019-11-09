@@ -10,6 +10,12 @@ using namespace std;
 int main(int argc, char* argv[]){
   
   int number_of_rotors = 0, rotor_num =0, error = 0;
+
+  if(argc < 4){
+    error = 1;
+    check_error(error);
+    return error;
+  }
   int starting_position[argc-4] = {};
   int input_int =0;
   char input_char;
@@ -19,6 +25,7 @@ int main(int argc, char* argv[]){
 
   number_of_rotors = argc -4;
 
+  
   plug.file_name = argv[1];
 
   error = plug.plugboard_check();

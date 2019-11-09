@@ -1,6 +1,6 @@
 /* function to check error code and output to the standard error file stream*/
 
-void check_error(int error, char* file_name);
+void check_error(int error, char* file_name= NULL);
 
 /* error codes  */
 #define INSUFFICIENT_NUMBER_OF_PARAMETERS         1

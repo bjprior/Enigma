@@ -59,24 +59,7 @@ void Rotor::rotate(){
     current_position += 1;
 
 }
-
-/*void Rotor::rotor_set(){
-
-  int temp[1][2];
-
-  temp[0][0] = mapping[0][0];
-  temp[0][1] = mapping[0][1];
-
-  for(int i = 0; i <25; i++){
-    mapping[i][0] = mapping[i+1][0];
-    mapping[i][1] = mapping[i+1][1];
-  }
-
-  mapping[25][0] = temp[0][0];
-  mapping[25][1] = temp[0][1];
-}
-*/  
-
+  
 int Rotor::rotor_fwd_map(int target){
 
   //// cout << endl << "current "<<current_position << " start " << starting_position << endl;
