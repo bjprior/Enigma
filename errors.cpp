@@ -20,7 +20,7 @@ void check_error(int error, char* file_name){
     break;
     
   case 10:
-    cerr << "
+    cerr << "Insuffience number of mappings in reflector file " << file_name << endl;
       break;
   default:
     break;
