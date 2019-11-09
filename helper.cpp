@@ -1,6 +1,6 @@
 #include<iostream>
 #include<fstream>
-#include"errors.h"
+#include"errors.hpp"
 #include"helper.hpp"
 
 const int AMIN = 0, ZMAX = 25;
@@ -32,3 +32,7 @@ bool index_check(int number){
 
   return(number > ZMAX || number < AMIN);
 }
+
+
+
+

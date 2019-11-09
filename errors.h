@@ -1,3 +1,8 @@
+/* function to check error code and output to the standard error file stream*/
+
+void check_error(int error, char* file_name);
+
+
 /* error codes  */
 #define INSUFFICIENT_NUMBER_OF_PARAMETERS         1
 #define INVALID_INPUT_CHARACTER                   2
@@ -11,3 +16,4 @@
 #define INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS  10
 #define ERROR_OPENING_CONFIGURATION_FILE          11
 #define NO_ERROR                                  0
+

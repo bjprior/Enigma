@@ -1,5 +1,5 @@
 #include<iostream>
-#include"errors.h"
+#include"errors.hpp"
 #include"plugboard.hpp"
 #include"reflector.hpp"
 #include"rotors.hpp"
@@ -18,11 +18,15 @@ int main(int argc, char* argv[]){
   Rotor rotor[argc - 4];
 
   number_of_rotors = argc -4;
-    
-  plug.file_name = argv[1];
-  plug.plugboard_check();
 
-    
+  plug.file_name = argv[1];
+
+  error = plug.plugboard_check();
+  if(error != 0){
+    check_error(error,argv[1]);
+    return error;
+  }
+  
   reflector.file_name = argv[2];
   reflector.reflector_check();
 
