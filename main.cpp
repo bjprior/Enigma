@@ -13,7 +13,7 @@ int main(int argc, char* argv[]){
 
   if(argc < 4){
     error = 1;
-    check_error(error);
+     cerr<< "usage: enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions" << endl;
     return error;
   }
   int starting_position[argc-4] = {};
@@ -29,10 +29,9 @@ int main(int argc, char* argv[]){
   plug.file_name = argv[1];
 
   error = plug.plugboard_check();
-  if(error != 0){
-    check_error(error,argv[1]);
+  if(error != 0)
     return error;
-  }
+
   
   reflector.file_name = argv[2];
   error = reflector.reflector_check();

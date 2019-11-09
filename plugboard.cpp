@@ -18,17 +18,25 @@ int Plugboard::plugboard_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
-    if (!is_numeric(static_cast<int>(peek)))
+    if(!is_numeric(static_cast<int>(peek))){
+      cerr <<"Non-numeric character in plugboard file " << file_name << endl;
       return 4;
+    }
     else{
       in_stream >> ws;
       in_stream >> number;
     }
-    if(index_check(number))
+    if(index_check(number)){
+      cerr <<"integer entered into the plugboard file "<< file_name;
+      cerr  << " not in the 0-25 range" << endl;
       return 3;
+    }
     for(int i =0; i <27; i++){
-      if(number == numbers[i])
+      if(number == numbers[i]){
+	cerr << "incorrect plugboard configuration " << number;
+	cerr << " cannot be mapped to" << number << endl;
 	return 5;
+      }
     }
     numbers[count] = number;
     pair[count/2][count%2] = number;
@@ -36,7 +44,7 @@ int Plugboard::plugboard_check(){
     in_stream >> ws;
     peek = in_stream.peek();
   }
-  if(count > 26 || count %2 != 0)
+  if(count > 25 || count %2 != 0)
     return 6;
   number_of_pairs = count/2;
   in_stream.close();
