@@ -1,7 +1,7 @@
 enigma: main.o helper.o plugboard.o reflector.o rotors.o errors.o
 	g++ main.o helper.o plugboard.o reflector.o rotors.o errors.o -o enigma
 
-main.o: main.cpp helper.hpp plugboard.hpp errors.hpp
+main.o: main.cpp helper.hpp plugboard.hpp
 	g++ -g -c -Wall main.cpp
 
 plugboard.o: plugboard.cpp helper.hpp plugboard.hpp
