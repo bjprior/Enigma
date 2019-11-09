@@ -35,15 +35,17 @@ int main(int argc, char* argv[]){
   
   reflector.file_name = argv[2];
   error = reflector.reflector_check();
-  if(error != 0){
-    check_error(error,argv[2]);
+  if(error != 0)
     return error;
-  }
+
  
   /* assign values to rotor */
   for(int i = argc - 4; i < argc -4 + number_of_rotors; i++){
     rotor[rotor_num].file_name=argv[i];
-    rotor[rotor_num].rotor_check();
+    error = rotor[rotor_num].rotor_check();
+    if(error != 0){
+      return error;
+    }
     rotor_num++;
   }  
 

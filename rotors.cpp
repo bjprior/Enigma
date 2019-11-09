@@ -16,14 +16,19 @@ int Rotor::rotor_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
-    if (!is_numeric(static_cast<int>(peek)))
+    if (!is_numeric(static_cast<int>(peek))){
+      cerr <<"Non-numeric character in rotor file " << file_name << endl;
       return 4;
+    }
     else{
       in_stream >> ws;
       in_stream >> number;
     }
-    if(index_check(number))
+    if(index_check(number)){
+      cerr <<"integer entered into the rotor file "<< file_name;
+      cerr  << " not in the 0-25 range" << endl;
       return 3;
+    }
     if(count < 26){
       for(int i =0; i <26; i++){
 	if(number == numbers[i])

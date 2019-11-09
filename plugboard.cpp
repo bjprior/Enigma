@@ -31,7 +31,7 @@ int Plugboard::plugboard_check(){
       cerr  << " not in the 0-25 range" << endl;
       return 3;
     }
-    for(int i =0; i <27; i++){
+    for(int i =0; i <26; i++){
       if(number == numbers[i]){
 	cerr << "incorrect plugboard configuration " << number;
 	cerr << " cannot be mapped to" << number << endl;
@@ -44,8 +44,11 @@ int Plugboard::plugboard_check(){
     in_stream >> ws;
     peek = in_stream.peek();
   }
-  if(count > 25 || count %2 != 0)
+  if(count > 26 || count %2 != 0){
+    cerr <<"Incorrect number of parameters in plugboard file ";
+    cerr << file_name;
     return 6;
+  }
   number_of_pairs = count/2;
   in_stream.close();
   return 0;
