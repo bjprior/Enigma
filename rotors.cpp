@@ -31,8 +31,14 @@ int Rotor::rotor_check(){
     }
     if(count < 26){
       for(int i =0; i <26; i++){
-	if(number == numbers[i])
+	if(number == numbers[i]){
+	  cerr <<" Invalid mapping of input " << number << " to output ";
+	  if(count%2 != 0)
+	    cerr << numbers[i-1];
+	  else
+	    
 	  return 7;
+	}
 	if(i <25)
 	  total += number;
       }

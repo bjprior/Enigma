@@ -57,12 +57,18 @@ int main(int argc, char* argv[]){
     rotor[i].current_position = rotor[i].starting_position;
   }
     
-  /*for(int i = 0; i < number_of_rotors; i++){
+  /* for(int i = 0; i < number_of_rotors; i++){
     cout << "Rotor " << i << " Starting Position" << rotor[i].starting_position << endl;
-    }*/
-
+    }
+  */
   // Passing values through the engima machine // 
-  while(cin >> ws >>input_char && input_char <= 'Z' && input_char >='A' ){
+  while(cin >> ws>>input_char){
+    if(input_char > 'Z' || input_char <'A'){
+      cerr << input_char << " is not a valid input character (input character";
+      cerr << "must be upper case letters A-Z)!" << endl;
+      error = 2;
+      return error;
+    }
     input_int = static_cast<int>(input_char)-65;
 
     // Pass through plugboard //

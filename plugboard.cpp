@@ -18,7 +18,7 @@ int Plugboard::plugboard_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
-    if(count > 26){
+    if(count > 25){
       cerr <<"Incorrect number of parameters in plugboard file ";
       cerr << file_name;
       return 6;
