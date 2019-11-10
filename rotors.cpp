@@ -10,7 +10,7 @@ int Rotor::rotor_check(){
   fill(numbers, numbers + 35, -11);
   char peek;
   ifstream in_stream;
-  
+
   open_file(file_name,in_stream);
   
   in_stream >>ws;
@@ -35,8 +35,7 @@ int Rotor::rotor_check(){
 	  cerr <<" Invalid mapping of input " << number << " to output ";
 	  if(count%2 != 0)
 	    cerr << numbers[i-1];
-	  else
-	    
+	  else  
 	  return 7;
 	}
 	if(i <25)

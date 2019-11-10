@@ -38,9 +38,8 @@ int main(int argc, char* argv[]){
   if(error != 0)
     return error;
 
- 
   /* assign values to rotor */
-  for(int i = argc - 4; i < argc -4 + number_of_rotors; i++){
+  for(int i = 3; i < 3 + number_of_rotors; i++){
     rotor[rotor_num].file_name=argv[i];
     error = rotor[rotor_num].rotor_check();
     if(error != 0){
