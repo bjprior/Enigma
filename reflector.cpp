@@ -18,12 +18,12 @@ int Reflector::reflector_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
-    if(count > 25 && count%2!=0){
+    if(count > 25 && count%2==0){
       cerr <<"Incorrect (odd) number of parameters in reflector file ";
       cerr << file_name << endl;
       return 10;
     }
-    if(count > 25 && count%2==0){
+    if(count > 25 && count%2!=0){
       cerr <<"Incorrect number of parameters in reflector file ";
       cerr << file_name << endl;
       return 10;

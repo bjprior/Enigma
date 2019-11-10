@@ -64,8 +64,8 @@ int main(int argc, char* argv[]){
   // Passing values through the engima machine // 
   while(cin >> ws>>input_char){
     if(input_char > 'Z' || input_char <'A'){
-      cerr << input_char << " is not a valid input character (input character";
-      cerr << "must be upper case letters A-Z)!" << endl;
+      cerr << input_char << " is not a valid input character (input characters";
+      cerr << " must be upper case letters A-Z)!" << endl;
       error = 2;
       return error;
     }
