@@ -17,7 +17,7 @@ int Rotor::rotor_check(){
   peek = in_stream.peek();
   while(!in_stream.eof()){
     if (!is_numeric(static_cast<int>(peek))){
-      cerr <<"Non-numeric character in rotor file " << file_name << endl;
+      cerr <<"Non-numeric character for mapping in rotor file " << file_name << endl;
       return 4;
     }
     else{
@@ -32,10 +32,9 @@ int Rotor::rotor_check(){
     if(count < 26){
       for(int i =0; i <26; i++){
 	if(number == numbers[i]){
-	  cerr <<" Invalid mapping of input " << number << " to output ";
-	  if(count%2 != 0)
-	    cerr << numbers[i-1];
-	  else  
+	  cerr <<" Invalid mapping of input " << count << " to output " << number;
+	  cerr <<" (output " << number << "is already mapped to from input ";
+	  cerr << i << " in rotor file "<< file_name << endl;
 	  return 7;
 	}
 	if(i <25)
@@ -59,6 +58,10 @@ int Rotor::rotor_check(){
     count ++;
     in_stream >> ws;
     peek = in_stream.peek();
+  }
+  if(count < 25){
+    cerr << "Not all inputs mapped in rotor file: " << file_name <<endl;
+    return 7;
   }
   in_stream.close();
   return 0;
@@ -116,22 +119,29 @@ int config_check(char* file_name, int number_of_files, int positions[]){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
-    if (!is_numeric(static_cast<int>(peek)))
+    if(!is_numeric(static_cast<int>(peek))){
+      cerr <<"Non-numeric character in rotor positions file " << file_name << endl;
       return 4;
+    }
     else{
       in_stream >> ws;
       in_stream >> number;
     }
-    if(index_check(number))
+    if(index_check(number)){
+      cerr <<"integer entered into the rotor position file "<< file_name;
+      cerr  << " not in the 0-25 range" << endl;
       return 3;
+    }
     positions[count] = number;
     count++;
     in_stream >>ws;
     peek = in_stream.peek();
   }
-  if(count != number_of_files -4)
+  if(count != number_of_files -4){
+    cerr << "No starting position for rotor " << count;
+    cerr << " in rotor position file: "<<file_name << endl;
     return 8;
-  
+  }
   in_stream.close();
   return 0;
 }
