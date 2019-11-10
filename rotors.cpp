@@ -33,8 +33,8 @@ int Rotor::rotor_check(){
       for(int i =0; i <26; i++){
 	if(number == numbers[i]){
 	  cerr <<" Invalid mapping of input " << count << " to output " << number;
-	  cerr <<" (output " << number << "is already mapped to from input ";
-	  cerr << i << " in rotor file "<< file_name << endl;
+	  cerr <<" (output " << number << " is already mapped to from input ";
+	  cerr << i << ") in rotor file "<< file_name << endl;
 	  return 7;
 	}
 	if(i <25)
@@ -137,7 +137,7 @@ int config_check(char* file_name, int number_of_files, int positions[]){
     in_stream >>ws;
     peek = in_stream.peek();
   }
-  if(count != number_of_files -4){
+  if(count < number_of_files -4){
     cerr << "No starting position for rotor " << count;
     cerr << " in rotor position file: "<<file_name << endl;
     return 8;

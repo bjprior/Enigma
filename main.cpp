@@ -49,7 +49,10 @@ int main(int argc, char* argv[]){
   }  
 
   /*Assign the starting position to rotor*/
-  config_check(argv[argc-1],argc,starting_position);
+  error = config_check(argv[argc-1],argc,starting_position);
+  if(error !=0){
+    return error;
+  }
   
   for (int i =0; i < number_of_rotors; i++){
     rotor[i].starting_position = starting_position[i];
