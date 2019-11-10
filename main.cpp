@@ -59,10 +59,6 @@ int main(int argc, char* argv[]){
     rotor[i].current_position = rotor[i].starting_position;
   }
     
-  /* for(int i = 0; i < number_of_rotors; i++){
-    cout << "Rotor " << i << " Starting Position" << rotor[i].starting_position << endl;
-    }
-  */
   // Passing values through the engima machine // 
   while(cin >> ws>>input_char){
     if(input_char > 'Z' || input_char <'A'){

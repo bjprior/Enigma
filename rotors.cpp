@@ -75,15 +75,13 @@ void Rotor::rotate(){
   
 int Rotor::rotor_fwd_map(int target){
 
-  //// cout << endl << "current "<<current_position << " start " << starting_position << endl;
+
   int output,rel_pos; //rel_pos is current position - starting position 
   int ent_pos; //the position the char enters the rotor
-  ////cout << "current " << current_position << " start  " << starting_position << endl;
+
   ent_pos = (current_position+target)%26;
-    
-  ////cout <<" ent " << ent_pos;
   rel_pos = (current_position)%26;
-  ////cout << " rel " << rel_pos << endl;
+
   output = mapping[ent_pos][0]-rel_pos;
   if(output < 0)
     output+=26;
