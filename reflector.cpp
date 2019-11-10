@@ -18,6 +18,16 @@ int Reflector::reflector_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
+    if(count > 26 && count%2!=0){
+      cerr <<"Incorrect (odd) number of parameters in reflector file ";
+      cerr << file_name << endl;
+      return 10;
+    }
+    if(count > 26 && count%2==0){
+      cerr <<"Incorrect number of parameters in reflector file ";
+      cerr << file_name << endl;
+      return 10;
+    }
     if(!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character in reflector file " << file_name << endl;
       return 4;
@@ -34,7 +44,7 @@ int Reflector::reflector_check(){
     for(int i =0; i <27; i++){
       if(number == numbers[i]){
 	cerr << "incorrect reflector configuration " << number;
-	cerr << " cannot be mapped to" << number << endl;
+	cerr << " cannot be mapped to " << number << endl;
 	return 9;
       }
     }
@@ -55,7 +65,7 @@ int Reflector::reflector_check(){
     return 10;
   }
   if(count >26){
-    cerr <<"Too many mappings in reflector file " << file_name << endl;
+    cerr <<"Too many mappings in reflector file: " << file_name << endl;
   }
   in_stream.close();
   return 0;    

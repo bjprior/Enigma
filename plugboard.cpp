@@ -18,6 +18,11 @@ int Plugboard::plugboard_check(){
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
+    if(count > 26){
+      cerr <<"Incorrect number of parameters in plugboard file ";
+      cerr << file_name;
+      return 6;
+    }
     if(!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character in plugboard file " << file_name << endl;
       return 4;
@@ -44,7 +49,7 @@ int Plugboard::plugboard_check(){
     in_stream >> ws;
     peek = in_stream.peek();
   }
-  if(count > 26 || count %2 != 0){
+  if(count %2 != 0){
     cerr <<"Incorrect number of parameters in plugboard file ";
     cerr << file_name;
     return 6;
