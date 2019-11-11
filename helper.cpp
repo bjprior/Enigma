@@ -22,10 +22,10 @@ int open_file(char* file_name, ifstream &instream){
   
   instream.open(file_name);
   if (instream.fail()){
-    cout << "Sorry this file couldn't be opened";
-    return 11;
+    cerr << "Sorry " <<file_name << "couldn't be opened" << endl;
+    return ERROR_OPENING_CONFIGURATION_FILE;
   }
-  return 0;
+  return NO_ERROR;
 }
 	
 bool index_check(int number){

@@ -64,7 +64,7 @@ int main(int argc, char* argv[]){
     if(input_char > 'Z' || input_char <'A'){
       cerr << input_char << " is not a valid input character (input characters";
       cerr << " must be upper case letters A-Z)!" << endl;
-      error = 2;
+      error = INVALID_INPUT_CHARACTER;
       return error;
     }
     input_int = static_cast<int>(input_char)-65;
@@ -107,5 +107,5 @@ int main(int argc, char* argv[]){
     cout << input_char;	      
   } 
   
-  return 0;
+  return NO_ERROR;
 }

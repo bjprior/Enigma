@@ -1,6 +1,7 @@
 #include<iostream>
 #include"rotors.hpp"
 #include"helper.hpp"
+#include"errors.hpp"
 
 using namespace std;
 
@@ -11,14 +12,15 @@ int Rotor::rotor_check(){
   char peek;
   ifstream in_stream;
 
-  open_file(file_name,in_stream);
+  if(open_file(file_name,in_stream)!=0)
+    return ERROR_OPENING_CONFIGURATION_FILE;
   
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
     if (!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character for mapping in rotor file " << file_name << endl;
-      return 4;
+      return NON_NUMERIC_CHARACTER;
     }
     else{
       in_stream >> ws;
@@ -27,7 +29,7 @@ int Rotor::rotor_check(){
     if(index_check(number)){
       cerr <<"integer entered into the rotor file "<< file_name;
       cerr  << " not in the 0-25 range" << endl;
-      return 3;
+      return INVALID_INDEX;
     }
     if(count < 26){
       for(int i =0; i <26; i++){
@@ -35,7 +37,7 @@ int Rotor::rotor_check(){
 	  cerr <<" Invalid mapping of input " << count << " to output " << number;
 	  cerr <<" (output " << number << " is already mapped to from input ";
 	  cerr << i << ") in rotor file "<< file_name << endl;
-	  return 7;
+	  return INVALID_ROTOR_MAPPING;
 	}
 	if(i <25)
 	  total += number;
@@ -44,7 +46,7 @@ int Rotor::rotor_check(){
     if(count >25){
       for(int i =26; i <35; i++){
 	if(number == numbers[i])
-	  return 7;
+	  return INVALID_ROTOR_MAPPING;
       }
     }
     numbers[count] = number;
@@ -61,10 +63,10 @@ int Rotor::rotor_check(){
   }
   if(count < 25){
     cerr << "Not all inputs mapped in rotor file: " << file_name <<endl;
-    return 7;
+    return INVALID_ROTOR_MAPPING;
   }
   in_stream.close();
-  return 0;
+  return NO_ERROR;
 }
 
 void Rotor::rotate(){
@@ -119,7 +121,7 @@ int config_check(char* file_name, int number_of_files, int positions[]){
   while(!in_stream.eof()){
     if(!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character in rotor positions file " << file_name << endl;
-      return 4;
+      return NON_NUMERIC_CHARACTER;
     }
     else{
       in_stream >> ws;
@@ -128,7 +130,7 @@ int config_check(char* file_name, int number_of_files, int positions[]){
     if(index_check(number)){
       cerr <<"integer entered into the rotor position file "<< file_name;
       cerr  << " not in the 0-25 range" << endl;
-      return 3;
+      return INVALID_INDEX;
     }
     positions[count] = number;
     count++;
@@ -138,10 +140,10 @@ int config_check(char* file_name, int number_of_files, int positions[]){
   if(count < number_of_files -4){
     cerr << "No starting position for rotor " << count;
     cerr << " in rotor position file: "<<file_name << endl;
-    return 8;
+    return NO_ROTOR_STARTING_POSITION;
   }
   in_stream.close();
-  return 0;
+  return NO_ERROR;
 }
 
 bool notch_check(Rotor rotor, int position){

@@ -13,7 +13,8 @@ int Reflector::reflector_check(){
   fill(numbers, numbers +27, -11);
   ifstream in_stream;
   
-  open_file(file_name,in_stream);
+  if(open_file(file_name,in_stream)!=0)
+    return ERROR_OPENING_CONFIGURATION_FILE;
   
   in_stream >>ws;
   peek = in_stream.peek();
@@ -21,16 +22,16 @@ int Reflector::reflector_check(){
     if(count > 25 && count%2==0){
       cerr <<"Incorrect (odd) number of parameters in reflector file ";
       cerr << file_name << endl;
-      return 10;
+      return INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
     }
     if(count > 25 && count%2!=0){
       cerr <<"Incorrect number of parameters in reflector file ";
       cerr << file_name << endl;
-      return 10;
+      return INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
     }
     if(!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character in reflector file " << file_name << endl;
-      return 4;
+      return NON_NUMERIC_CHARACTER;
     }
     else{
       in_stream >> ws;
@@ -39,13 +40,13 @@ int Reflector::reflector_check(){
     if(index_check(number)){
       cerr <<"integer entered into the reflector file "<< file_name;
       cerr  << " not in the 0-25 range" << endl;
-      return 3;
+      return INVALID_INDEX;
     }
     for(int i =0; i <27; i++){
       if(number == numbers[i]){
 	cerr << "incorrect reflector configuration " << number;
 	cerr << " cannot be mapped to " << number << endl;
-	return 9;
+	return INVALID_REFLECTOR_MAPPING;
       }
     }
     numbers[count] = number;
@@ -57,18 +58,19 @@ int Reflector::reflector_check(){
   if(count < 26 && count%2==0){
     cerr <<"Insufficient number of mappings in reflector file: ";
     cerr << file_name << endl;
-    return 10;
+    return INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   }
   if(count%2!=0){
     cerr <<"Incorrect (odd) number of parameters in reflector file ";
     cerr << file_name << endl;
-    return 10;
+    return INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   }
   if(count >26){
     cerr <<"Too many mappings in reflector file: " << file_name << endl;
+    return INCORRECT_NUMBER_OF_REFLECTOR_PARAMETERS;
   }
   in_stream.close();
-  return 0;    
+  return NO_ERROR;    
 }
 
 int Reflector::reflector_map(int target){

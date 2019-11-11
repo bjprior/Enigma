@@ -13,19 +13,20 @@ int Plugboard::plugboard_check(){
   fill(numbers, numbers +29, -11);
   ifstream in_stream;
  
-  open_file(file_name,in_stream);
-
+  if(open_file(file_name,in_stream)!=0)
+    return ERROR_OPENING_CONFIGURATION_FILE;
+  
   in_stream >>ws;
   peek = in_stream.peek();
   while(!in_stream.eof()){
     if(count > 25){
       cerr <<"Incorrect number of parameters in plugboard file ";
       cerr << file_name << endl;
-      return 6;
+      return INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
     }
     if(!is_numeric(static_cast<int>(peek))){
       cerr <<"Non-numeric character in plugboard file " << file_name << endl;
-      return 4;
+      return NON_NUMERIC_CHARACTER;
     }
     else{
       in_stream >> ws;
@@ -34,13 +35,13 @@ int Plugboard::plugboard_check(){
     if(index_check(number)){
       cerr <<"integer entered into the plugboard file "<< file_name;
       cerr  << " not in the 0-25 range" << endl;
-      return 3;
+      return INVALID_INDEX;
     }
     for(int i =0; i <26; i++){
       if(number == numbers[i]){
 	cerr << "incorrect plugboard configuration " << number;
 	cerr << " cannot be mapped to" << number << endl;
-	return 5;
+	return IMPOSSIBLE_PLUGBOARD_CONFIGURATION;
       }
     }
     numbers[count] = number;
@@ -52,11 +53,11 @@ int Plugboard::plugboard_check(){
   if(count %2 != 0){
     cerr <<"Incorrect number of parameters in plugboard file ";
     cerr << file_name << endl;
-    return 6;
+    return INCORRECT_NUMBER_OF_PLUGBOARD_PARAMETERS;
   }
   number_of_pairs = count/2;
   in_stream.close();
-  return 0;
+  return NO_ERROR;
 }
 
 int Plugboard::plug_map(int target){
