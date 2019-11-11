@@ -12,7 +12,7 @@ int main(int argc, char* argv[]){
   int number_of_rotors = 0, rotor_num =0, error = 0;
 
   if(argc < 4){
-    error = 1;
+    error = INSUFFICIENT_NUMBER_OF_PARAMETERS;
      cerr<< "usage: enigma plugboard-file reflector-file (<rotor-file>)* rotor-positions" << endl;
     return error;
   }
