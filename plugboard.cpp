@@ -20,7 +20,7 @@ int Plugboard::plugboard_check(){
   while(!in_stream.eof()){
     if(count > 25){
       cerr <<"Incorrect number of parameters in plugboard file ";
-      cerr << file_name;
+      cerr << file_name << endl;
       return 6;
     }
     if(!is_numeric(static_cast<int>(peek))){
@@ -51,7 +51,7 @@ int Plugboard::plugboard_check(){
   }
   if(count %2 != 0){
     cerr <<"Incorrect number of parameters in plugboard file ";
-    cerr << file_name;
+    cerr << file_name << endl;
     return 6;
   }
   number_of_pairs = count/2;
